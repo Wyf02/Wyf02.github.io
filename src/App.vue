@@ -1,16 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <AppNavbar />
+  <div class="page">
+  <router-view/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import AppNavbar from './components/Navbar.vue'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { AppNavbar }
 }
 </script>
 
@@ -21,6 +20,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+/* Reset default body margin to avoid top gap */
+html, body { margin: 0; }
+
+/* Leave space for fixed navbar (approx 52px height) */
+.page {
+  padding-top: 10vh;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
