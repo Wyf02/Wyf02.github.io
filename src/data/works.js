@@ -16,7 +16,7 @@ export const worksItems = [
     cover: 'pvis2025_art.png'
   },
   {
-    id: 'r2',
+    id: 'r2_vis2025_octopus',
     type: 'research',
     titletag: 'journal',
     title: 'Unveiling the Visual Rhetoric of Persuasive Cartography: A Case Study of the Design of Octopus Maps',
@@ -32,7 +32,7 @@ export const worksItems = [
     cover: 'vis2025_octopus.jpeg'
   },
   {
-    id: 'r3',
+    id: 'r3_vis2025_geo',
     type: 'research',
     titletag: 'journal',
     title: '"Mapping What I Feel": Understanding Affective Geovisualization Design Through the Lens of People-Place Relationships',
@@ -48,7 +48,7 @@ export const worksItems = [
     cover: 'vis2025_geo.png'
   },
   {
-    id: 'p1',
+    id: 'p1_2025_me',
     type: 'project',
     titletag: 'Personal project',
     title: 'Personal Site',
@@ -63,7 +63,7 @@ export const worksItems = [
     cover: 'proj2025_me.png'
   },
   {
-    id: 'p2',
+    id: 'p2_2023_geek',
     type: 'project',
     titletag: 'Product',
     title: '知云云服务供应链威胁感知系统',

@@ -295,10 +295,11 @@ export default {
 /* ── Main ── */
 .main {
   padding: 36px 0 36px 36px;
+  text-align: left;
 }
 
 .header {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .badges {
@@ -328,6 +329,7 @@ export default {
   line-height: 1.3;
   margin: 0 0 14px;
   letter-spacing: -0.01em;
+  text-align: left;
 }
 
 .author {
@@ -347,43 +349,70 @@ export default {
 
 /* ── Content (Markdown) ── */
 .content {
-  margin-top: 32px;
-  line-height: 1.8;
-  font-size: 15px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
 }
 
-.content h2 {
-  margin: 28px 0 16px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #c7dff5;
+:deep(.content) h1,
+:deep(.content) h2,
+:deep(.content) h3,
+:deep(.content) h4 {
+  text-align: left;
+}
+
+:deep(.content) h2 {
+  margin: 36px 0 14px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #e8f4ff;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   padding-bottom: 8px;
 }
 
-.content h3 {
-  margin: 20px 0 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #d4e4f7;
+:deep(.content) h3 {
+  margin: 24px 0 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c7dff5;
 }
 
-.content p {
-  margin: 0 0 14px;
+:deep(.content) h4 {
+  margin: 18px 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+:deep(.content) p {
+  margin: 0 0 16px;
+  line-height: 1.85;
+  font-size: 15px;
   opacity: 0.88;
 }
 
-.content ul, .content ol {
-  margin: 12px 0 16px 24px;
+:deep(.content) ul,
+:deep(.content) ol {
+  margin: 0 0 16px 22px;
+  padding: 0;
+}
+
+:deep(.content) li {
+  margin-bottom: 8px;
+  line-height: 1.75;
+  font-size: 15px;
   opacity: 0.88;
 }
 
-.content li {
-  margin-bottom: 6px;
+:deep(.content) strong {
+  color: #e8f4ff;
+  font-weight: 700;
+  opacity: 1;
 }
 
-.content code {
-  background: rgba(0,0,0,0.3);
+:deep(.content) code {
+  background: rgba(0,0,0,0.35);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Monaco', 'Courier New', monospace;
@@ -391,45 +420,68 @@ export default {
   color: #b0ffa6;
 }
 
-.content pre {
+:deep(.content) pre {
   background: rgba(0,0,0,0.4);
   border-left: 3px solid #5BA689;
-  padding: 14px 16px;
-  border-radius: 6px;
+  padding: 16px 18px;
+  border-radius: 8px;
   overflow-x: auto;
-  margin: 16px 0;
+  margin: 20px 0;
   font-size: 13px;
+  text-align: left;
 }
 
-.content pre code {
+:deep(.content) pre code {
   background: none;
   padding: 0;
   color: #b0ffa6;
 }
 
-.content blockquote {
-  border-left: 4px solid #5BA689;
-  margin: 16px 0;
-  padding-left: 16px;
+:deep(.content) blockquote {
+  border-left: 3px solid #5BA689;
+  margin: 20px 0;
+  padding: 12px 18px;
+  background: rgba(91,166,137,0.08);
+  border-radius: 0 8px 8px 0;
   color: #9fe0ff;
-  opacity: 0.8;
   font-style: italic;
+  text-align: left;
 }
 
-.content a {
+:deep(.content) blockquote p {
+  margin: 0;
+}
+
+:deep(.content) a {
   color: #9fe0ff;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(159,224,255,0.4);
 }
 
-.content a:hover {
-  text-decoration: underline;
+:deep(.content) a:hover {
+  text-decoration-color: #9fe0ff;
+}
+
+:deep(.content) img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: block;
+}
+
+:deep(.content) hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 32px 0;
 }
 
 .loading {
   margin-top: 32px;
   opacity: 0.6;
   font-size: 14px;
+  text-align: left;
 }
 
 /* ── Navigation ── */
