@@ -15,7 +15,7 @@ export default {
   computed: {
     navbarClass() {
       if (this.$route.path === '/') return 'navbar--home';
-      if (this.$route.path === '/works') return 'navbar--works';
+      if (this.$route.path.startsWith('/works')) return 'navbar--works';
       return 'navbar--default'
     }
   }

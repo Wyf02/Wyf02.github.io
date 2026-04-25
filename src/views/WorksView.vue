@@ -40,7 +40,7 @@
           <span class="count">{{ researchItems.length }}</span>
         </div>
         <div class="cards  research-cards">
-          <article v-for="it in researchItems" :key="it.id" class="card  research-card" >
+          <article v-for="it in researchItems" :key="it.id" class="card  research-card" @click="goDetail(it.id)">
             <div class="card__thumb" :style="cardThumb(it.cover)"></div>
             <div class="card__content">
               <h3 class="card__title"><span class="paper-tag" :data-type="it.titletag">{{ it.titletag }}</span>{{ it.title }}</h3>
@@ -56,9 +56,9 @@
                 <span class="chip chip-select--tech" v-for="t in it.tech" :key="t">{{ t }}</span>
               </div>
               <div class="links">
-                  Paper:<a v-if="it.link" :href="it.link[0]" target="_blank" rel="noopener">Link</a>
+                  Paper:<a v-if="it.link" :href="it.link[0]" target="_blank" rel="noopener" @click.stop>Link</a>
                   <span class="sep">|</span>
-                  Material: <a v-if="it.link[1]" :href="it.link[1]" target="_blank" rel="noopener">Website</a>
+                  Material: <a v-if="it.link[1]" :href="it.link[1]" target="_blank" rel="noopener" @click.stop>Website</a>
               </div>
             </div>
           </article>
@@ -71,7 +71,7 @@
           <span class="count">{{ projectItems.length }}🚧🚧Updates in progress🚧🚧</span>
         </div>
         <div class="cards">
-          <article v-for="it in projectItems" :key="it.id" class="card" >
+          <article v-for="it in projectItems" :key="it.id" class="card" @click="goDetail(it.id)">
             <div class="card__thumb" :style="cardThumb(it.cover, 'proj')"></div>
             <div class="card__content">
               <div class="card__head">
@@ -91,9 +91,9 @@
                 <span class="chip chip-select--tech" v-for="t in it.tech" :key="t">{{ t }}</span>
               </div>
               <div class="links">
-                  Material:<a v-for="(value, key, index) in it.link" :key="index" :href="value" target="_blank" rel="noopener" style="margin-right: 10px;">{{ key }} </a>
+                    Material:<a v-for="(value, key, index) in it.link" :key="index" :href="value" target="_blank" rel="noopener" style="margin-right: 10px;" @click.stop>{{ key }} </a>
               </div>
-             
+
             </div>
           </article>
         </div>
@@ -105,43 +105,15 @@
 </template>
 
 <script>
+import { worksItems } from '@/data/works'
+
 export default {
   name: 'WorksView',
   data() {
     return {
       query: '',
       filters: { role: [], tags: [], tech: [], language:[], status: [] },
-      allItems: [
-        { id: 'r1', type: 'research', titletag: 'conference', title: 'More Than Beautiful: Exploring Design Features, Practical Perspectives, and Implications of Artistic Data Visualization', 
-          author: 'Xingyu Lan, Yifan Wang, Lingyu Peng, Xiaofan Ma',
-          description: 'Proceedings of the IEEE Pacific Visualization Conference (PacificVis 2025). 🏆 Best Paper Award', 
-          year: 2025, role: ['Researcher','Developer','Designer'], tags: ['Vis','Art'], language:['Python','html/css/js'],
-          tech: ['Vue.js','Echarts.js'], status: 'Published', link: ['https://arxiv.org/pdf/2502.04940', 'https://artisticvis.github.io/'], 
-          cover: 'pvis2025_art.png' },
-        { id: 'r2', type: 'research', titletag: 'journal', title: 'Unveiling the Visual Rhetoric of Persuasive Cartography: A Case Study of the Design of Octopus Maps', 
-          author: 'Daocheng Lin, Yifan Wang, Yutong Yang, Xingyu Lan',  
-          description: 'To appear at IEEE VIS 2025.', 
-          year: 2025, role: ['Researcher','Developer','Designer'], tags: ['Vis','Map','Machine Learning'], language:['Python','html/css/js'],
-          tech: ['Vue.js','Echarts.js'], status: 'To appear', link: ['https://arxiv.org/abs/2507.11903','https://octopusmap.github.io/'], 
-          cover: 'vis2025_octopus.jpeg' },
-        { id: 'r3', type: 'research', titletag: 'journal', title: '"Mapping What I Feel": Understanding Affective Geovisualization Design Through the Lens of People-Place Relationships', 
-          author: 'Xingyu Lan, Yutong Yang, Yifan Wang',  
-          description: 'To appear at IEEE VIS 2025.', 
-          year: 2025, role: ['Researcher','Developer','Designer'], tags: ['Vis','Map'], language:['Python','html/css/js'],
-          tech: ['Vue.js','Echarts.js','D3.js'], status: 'To appear', link: ['https://arxiv.org/abs/2507.11841','https://affectivegeovis.github.io/'], 
-          cover: 'vis2025_geo.png' },
-
-        { id: 'p1', type: 'project', titletag:'Personal project', title: 'Personal Site', 
-          description: 'Portfolio and blog.', 
-          year: 2025, role: ['Developer','Designer'], tags: ['Web Developmet'], language:['html/css/js'],
-          tech: ['Vue.js'], status: 'Ongoing', link: {Website:'https://wyf02.github.io/'},
-          cover: 'proj2025_me.png' },
-          { id: 'p2', type: 'project', titletag:'Product', title: '知云云服务供应链威胁感知系统', 
-          description: '【前端开发负责人、产品负责人】通过BERT模型获取漏洞信息的句向量，结合KNN分类、多项式朴素贝叶斯模型等方式修正/补全漏洞评分、漏洞类型及危害；基于深度学习的关联性评估模型，获取漏洞补丁。采用控制流分析、数据流分析技术分析漏洞可达性，并进行盯向模糊测试，验证漏洞可触发性。另开发可视分析系统、数字大屏等前端页面。', 
-          year: 2023, role: ['Developer','Designer'], tags: ['Web Developmet','Machine Learning'], language:['html/css/js'],
-          tech: ['Vue.js','BERT'], status: 'Archived', link: {Website:'https://wyf02.github.io/GEEK2023/',Github:'https://github.com/wyf02/GEEK2023'}, 
-          cover: 'proj2023_geek.png' }
-      ]
+      allItems: worksItems
     }
   },
   mounted() {
@@ -176,6 +148,9 @@ export default {
     projectItems() { return this.filtered.filter(i => i.type === 'project') }
   },
   methods: {
+    goDetail(id) {
+      this.$router.push(`/works/${id}`)
+    },
     toggleFilter(group, val) {
       const arr = this.filters[group]
       const idx = arr.indexOf(val)
@@ -301,6 +276,7 @@ export default {
 @media (max-width: 900px){ .cards { grid-template-columns: repeat(2, 1fr); } .sidebar {position: unset}}
 @media (max-width: 600px){ .cards { grid-template-columns: 1fr; } }
 .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; text-align: left;}
+.card { cursor: pointer; }
 .card:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.18); }
 .card__content {
   padding: 14px 14px 16px;

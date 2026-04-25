@@ -11,17 +11,19 @@
         <p>My research interest lies at <strong>the intersection of AI, data visualization, and computational social science</strong>, especially in how data encodes power, how models influence human perception, and how we might build technological systems that are more human-centered, accountable, and emotionally resonant.</p>
         <p>I am guided by the belief that technology is never neutral — it is always connected to histories, institutions, and ways of seeing the world. So while I work with algorithms, I also think about their epistemology, their assumptions, and their implications, in the hope of designing systems that do not merely predict the world, but understand and care for it.</p>
         <p>Ultimately, I hope to become a researcher who moves fluidly between engineering and reflection — someone who treats data not just as numbers to optimize, but as stories of people, relations, and possibilities.</p>
+        <p>Recently, I have been diving into <strong>post-training techniques</strong> and <strong>agentic AI systems</strong> — exploring how models can be aligned, fine-tuned, and orchestrated to act autonomously in complex environments. I am actively looking for opportunities (internships or research positions) in these areas, where I can contribute to building more capable and responsible AI systems.</p>
         <p>Outside of research, I hope to keep thinking, creating, and growing. I enjoy reading, and my current interest lies in communication studies — especially the political economy of communication. I also love learning new languages and new ways of understanding the world; I’ve studied Cantonese, French, and German (thanks, Fudan!). Beyond academia, I am also on my way to becoming a capable independent developer😎😃😃.</p>
         <p style="color:#5BA689; font-weight:bold;">希望我们能够一起在探索世界、认识社会的道路上越走越远！</p>
         <p>(thinking how to translate it...)</p>
 
     </div>
     
-    <div style="display: inline-block; text-align:center; width: 20%; color:#5BA689; font-weight: 600; font-size: 20px">
+    <div class="news_title" style="display: inline-block; text-align:center; width: 20%; color:#5BA689; font-weight: 600; font-size: 20px">
         <p>News & Travels <br/>& Awards : )</p>
     </div>
 
     <div class="news_containter">
+        <div>01/2026 · Start to be a Tutor in HKU for "[CCAI9010]AI, Communication, and Society"</div>
         <div>07/2025 · <a href="https://arxiv.org/abs/2507.11841" target="_blank">Affective GeoVisualization Design</a> is accepted by IEEE VIS 2025.</div>
         <div>07/2025 · <a href="https://arxiv.org/abs/2507.11903" target="_blank">Visual Rhetoric of Persuasive Cartography(Octopus)</a> is accepted by IEEE VIS 2025.</div>
         <div>06/2025 · ChinaVis Conference, Served as both a conference volunteer and a presenter 📍Hangzhou, China</div>
@@ -182,5 +184,32 @@ a:hover {}
     text-align: left;
     line-height: 1.7;
     color: black;
+}
+
+@media (max-width: 900px) {
+    .container {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .photo_containter,
+    .cv_containter,
+    .news_title,
+    .news_containter {
+        display: block;
+        width: 100% !important;
+        margin-left: 0;
+    }
+
+    .photo_containter {
+        max-width: 260px;
+        margin: 0 auto 20px;
+    }
+
+    .news_title {
+        margin-top: 12px;
+        margin-bottom: 8px;
+        text-align: left !important;
+    }
 }
 </style>
