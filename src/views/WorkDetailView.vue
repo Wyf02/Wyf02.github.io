@@ -13,12 +13,12 @@
       <!-- Left sidebar: metadata -->
       <aside class="sidebar">
         <section class="meta-section">
-            <router-link class="back" to="/works">← Back to Works</router-link>
+            <router-link class="back" to="/works">Back to Works</router-link>
         </section>
         
         <div class="nav-arrows" v-if="prevWork || nextWork">
-          <router-link v-if="prevWork" :to="`/works/${prevWork.id}`" class="nav-btn nav-prev" title="Previous work">← {{ prevWork.title.substring(0, 20) }}</router-link>
-          <router-link v-if="nextWork" :to="`/works/${nextWork.id}`" class="nav-btn nav-next" title="Next work">{{ nextWork.title.substring(0, 20) }} →</router-link>
+          <router-link v-if="prevWork" :to="`/works/${prevWork.id}`" class="nav-btn nav-prev" title="Previous work">← {{ prevWork.title.substring(0, 30) }}...</router-link>
+          <router-link v-if="nextWork" :to="`/works/${nextWork.id}`" class="nav-btn nav-next" title="Next work"> {{ nextWork.title.substring(0, 30) }}...→</router-link>
         </div>
         <section class="meta-section">
           <h2 class="meta-section__title">Roles</h2>
@@ -64,6 +64,21 @@
           </div>
           <p v-else class="empty">—</p>
         </section>
+
+        <!-- TOC -->
+        <nav class="toc" v-if="toc.length">
+          <hr class="divider" />
+          <h2 class="meta-section__title">Contents</h2>
+          <ul class="toc__list">
+            <li
+              v-for="item in toc"
+              :key="item.id"
+              :class="['toc__item', `toc__item--h${item.level}`, { 'toc__item--active': activeId === item.id }]"
+            >
+              <a :href="`#${item.id}`" @click.prevent="scrollTo(item.id)">{{ item.text }}</a>
+            </li>
+          </ul>
+        </nav>
       </aside>
 
       <!-- Right main: header + content -->
@@ -107,7 +122,9 @@ export default {
   data() {
     return {
       contentHtml: '',
-      loading: true
+      loading: true,
+      toc: [],
+      activeId: ''
     }
   },
   computed: {
@@ -135,7 +152,7 @@ export default {
       if (Array.isArray(this.item.link)) {
         const links = []
         if (this.item.link[0]) links.push({ label: 'Paper', url: this.item.link[0] })
-        if (this.item.link[1]) links.push({ label: 'Material', url: this.item.link[1] })
+        if (this.item.link[1]) links.push({ label: 'Website', url: this.item.link[1] })
         return links
       }
       return Object.entries(this.item.link).map(([label, url]) => ({ label, url }))
@@ -153,13 +170,29 @@ export default {
     }
   },
   methods: {
+    buildToc(html) {
+      const toc = []
+      const slugCount = {}
+      const result = html.replace(/<(h[23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (match, tag, attrs, inner) => {
+        const text = inner.replace(/<[^>]+>/g, '').trim()
+        let slug = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w一-龥-]/g, '').replace(/^-+|-+$/g, '') || 'heading'
+        if (slugCount[slug] !== undefined) { slugCount[slug]++; slug += `-${slugCount[slug]}` } else { slugCount[slug] = 0 }
+        toc.push({ id: slug, text, level: parseInt(tag[1]) })
+        return `<${tag}${attrs} id="${slug}">${inner}</${tag}>`
+      })
+      return { html: result, toc }
+    },
     loadMarkdown() {
       if (!this.item) return
       this.loading = true
+      this.toc = []
+      this.activeId = ''
       try {
         const mdContent = getWorkContent(this.item.id)
         if (mdContent) {
-          this.contentHtml = marked(mdContent)
+          const { html, toc } = this.buildToc(marked(mdContent))
+          this.contentHtml = html
+          this.toc = toc
         } else {
           this.contentHtml = '<p>No detailed content available for this work.</p>'
         }
@@ -168,6 +201,24 @@ export default {
         this.contentHtml = '<p>Failed to load content.</p>'
       }
       this.loading = false
+      this.$nextTick(() => this.observeHeadings())
+    },
+    observeHeadings() {
+      if (this._observer) { this._observer.disconnect(); this._observer = null }
+      const headings = this.$el.querySelectorAll('.content h2, .content h3')
+      if (!headings.length) return
+      this._observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) this.activeId = e.target.id })
+      }, { rootMargin: '0px 0px -80% 0px', threshold: 0 })
+      headings.forEach(h => this._observer.observe(h))
+    },
+    scrollTo(id) {
+      const el = document.getElementById(id)
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.12
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
+      this.activeId = id
     }
   },
   watch: {
@@ -177,6 +228,9 @@ export default {
   },
   mounted() {
     this.loadMarkdown()
+  },
+  beforeUnmount() {
+    if (this._observer) this._observer.disconnect()
   }
 }
 </script>
@@ -350,8 +404,8 @@ export default {
 /* ── Content (Markdown) ── */
 .content {
   margin-top: 36px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  /* padding-top: 28px; */
+  /* border-top: 1px solid rgba(255,255,255,0.08); */
   text-align: left;
 }
 
@@ -482,6 +536,41 @@ export default {
   opacity: 0.6;
   font-size: 14px;
   text-align: left;
+}
+
+/* ── TOC ── */
+.toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc__item {
+  margin-bottom: 4px;
+}
+
+.toc__item--h3 {
+  padding-left: 12px;
+}
+
+.toc__item a {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(232, 244, 255, 0.5);
+  text-decoration: none;
+  padding: 3px 0 3px 8px;
+  border-left: 2px solid transparent;
+  transition: color 150ms, border-color 150ms;
+}
+
+.toc__item a:hover {
+  color: rgba(232, 244, 255, 0.85);
+}
+
+.toc__item--active a {
+  color: #9fe0ff;
+  border-left-color: #5BA689;
 }
 
 /* ── Navigation ── */

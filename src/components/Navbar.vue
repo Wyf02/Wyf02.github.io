@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
       <router-link to="/works">Works</router-link>
       <router-link to="/blogs">Blogs</router-link>
+      <router-link to="/misc">Misc</router-link>
     </div>
   </nav>
 </template>
@@ -16,6 +17,7 @@ export default {
     navbarClass() {
       if (this.$route.path === '/') return 'navbar--home';
       if (this.$route.path.startsWith('/works')) return 'navbar--works';
+      if (this.$route.path === '/misc') return 'navbar--works';
       return 'navbar--default'
     }
   }

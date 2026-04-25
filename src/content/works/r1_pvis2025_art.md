@@ -1,33 +1,17 @@
 ## Abstract
-
-This paper explores the intersection of art and data visualization, examining how artistic approaches can enhance both the aesthetic and functional dimensions of data representation. We investigate design features that make visualizations resonate emotionally while maintaining analytical rigor.
-
-## Introduction
-
-Data visualization has traditionally been viewed through a technical lens, prioritizing clarity and efficiency. However, recent developments suggest that integrating artistic principles can create more engaging and memorable visual experiences.
-
-## Key Contributions
-
-- **Artistic Design Framework**: A systematic approach to incorporating artistic elements into data visualization
-- **Practical Guidelines**: Concrete recommendations for practitioners
-- **User Study Results**: Evidence of improved engagement and comprehension
-
-## Methodology
-
-We conducted interviews with both data visualization designers and artists, synthesized their perspectives, and created a series of visualization prototypes that balance artistic expression with data accuracy.
-
-## Results
-
-The study revealed that:
-1. Artistic elements can enhance visual engagement without compromising accuracy
-2. Viewers develop stronger emotional connections to artistically-informed visualizations
-3. Practical considerations (rendering time, interactivity) remain important constraints
-
-## Conclusion
-
-This work opens new avenues for future research into the creative potential of data visualization, demonstrating that art and analytics are not mutually exclusive.
-
-## References
-
-- Chen, M., Floridi, L., & Sortino, Y. (2020). Good data. *Data Science and Philosophy*, 1-17.
-- Kindlmann, G., & Scheidegger, C. (2014). An algebraic process for visualization design. *IEEE Transactions on Visualization and Computer Graphics*, 20(12), 2181-2190.
+Standing at the intersection of science and art, artistic data visu
+alization has gained popularity in recent years and emerged as a
+significant domain. Despite more than a decade since the field’s
+conceptualization, a noticeable gap remains in research concern
+ing the design features of artistic data visualizations, the aesthetic
+goals they pursue, and their potential to inspire our community. To
+address these gaps, we analyzed 220 data artworks to understand
+their design paradigms and intents, and construct a design taxonomy
+to characterize their design techniques (e.g., sensation, interaction,
+narrative, physicality). We also conducted in-depth interviews with
+twelve data artists to explore their practical perspectives, such as
+their understanding of artistic data visualization and the challenges
+they encounter. In brief, we found that artistic data visualization is
+deeply rooted in art discourse, with its own distinctive characteristics
+in both inner pursuits and outer presentations. Based on our research,
+we outline seven prospective paths for future work.
