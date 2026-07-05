@@ -16,6 +16,7 @@
       </h2>
 
       <router-link class="cta" to="/about">Get in Touch</router-link>
+      <router-link class="cta cta--room" to="/room">🕯️ 走进我的书房</router-link>
 
       <div class="spacer"></div>
     </div>
@@ -329,6 +330,19 @@ export default {
 }
 .cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(255, 90, 95, 0.45); filter: brightness(1.05); }
 .cta:active { transform: translateY(0); box-shadow: 0 6px 20px rgba(255, 90, 95, 0.35); }
+
+/* secondary CTA leading to the 3D study room */
+.cta--room {
+  margin-left: 14px;
+  background: transparent;
+  border: 2px solid rgba(255, 214, 160, 0.75);
+  color: #ffd9a0;
+  box-shadow: none;
+}
+.cta--room:hover {
+  background: rgba(255, 214, 160, 0.12);
+  box-shadow: 0 10px 26px rgba(255, 190, 120, 0.18);
+}
 
 .spacer { height: 60vh; }
 

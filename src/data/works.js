@@ -48,6 +48,22 @@ export const worksItems = [
     cover: 'vis2025_geo.png'
   },
   {
+    id: 'r4_vis2026_teen',
+    type: 'research',
+    titletag: 'journal',
+    title: '"Mapping What I Feel": Understanding Affective Geovisualization Design Through the Lens of People-Place Relationships',
+    author: 'Xingyu Lan, Xian Xu, Yifan Wang',
+    description: 'IEEE Transactions on Visualization and Computer Graphic',
+    year: 2026,
+    role: ['Researcher', 'Developer', 'Designer'],
+    tags: ['Vis', 'Map'],
+    language: ['Python', 'html/css/js'],
+    tech: ['Vue.js', 'D3.js'],
+    status: 'Published',
+    link: ['https://ieeexplore.ieee.org/document/11552031', 'https://vis4teens.github.io/'],
+    cover: 'vis2026_teen.png'
+  },
+  {
     id: 'p1_2025_me',
     type: 'project',
     titletag: 'Personal project',

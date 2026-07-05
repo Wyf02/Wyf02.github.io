@@ -1,6 +1,6 @@
 <template>
-  <AppNavbar />
-  <div class="page">
+  <AppNavbar v-if="$route.name !== 'room'" />
+  <div class="page" :class="{ 'page--room': $route.name === 'room' }">
   <router-view/>
   </div>
 </template>
@@ -28,6 +28,10 @@ html, body { margin: 0; }
 /* Leave space for fixed navbar (approx 52px height) */
 .page {
   padding-top: 10vh;
+}
+/* Full-viewport immersive pages (3D room) */
+.page--room {
+  padding-top: 0;
 }
 
 nav a.router-link-exact-active {

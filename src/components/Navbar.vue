@@ -6,6 +6,7 @@
       <router-link to="/works">Works</router-link>
       <router-link to="/blogs">Blogs</router-link>
       <router-link to="/misc">Misc</router-link>
+      <router-link to="/room">Room(beta)</router-link>
     </div>
   </nav>
 </template>
