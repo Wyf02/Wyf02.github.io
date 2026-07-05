@@ -16,7 +16,7 @@
       </h2>
 
       <router-link class="cta" to="/about">Get in Touch</router-link>
-      <router-link class="cta cta--room" to="/room">🕯️ 走进我的书房</router-link>
+      <router-link class="cta cta--room" to="/room">ROOM-version(beta)</router-link>
 
       <div class="spacer"></div>
     </div>
